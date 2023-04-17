@@ -12,7 +12,8 @@ on:
       tfaction:
         required: false
         type: string
-        description: 'terraform action'    
+        description: 'terraform action' 
+        default: 'apply'
 runs:
   using: "composite"
   steps:

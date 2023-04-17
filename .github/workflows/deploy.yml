@@ -3,6 +3,7 @@ on:
     inputs:
       tfaction:
         required: false
+        default: 'apply'
     secrets:
       git_token:
         required: false
