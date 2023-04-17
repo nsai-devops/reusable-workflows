@@ -24,7 +24,7 @@ runs:
     shell: bash  
 
   - name: Terrafrom plan apply
-    if: ${{ inputs.git_token }} == 'apply'
+    if: ${{ inputs.tf-action }} == 'apply'
     run: |
       terraform plan -out=plan.out
     shell: bash  
@@ -32,7 +32,7 @@ runs:
       TF_VAR_git_token: ${{ inputs.git_token }}
 
   - name: Terrafrom plan apply
-    if: ${{ inputs.git_token }} == 'destroy'
+    if: ${{ inputs.tf-action }} == 'destroy'
     run: |
       terraform plan -destroy -out=plan.out
     shell: bash  
