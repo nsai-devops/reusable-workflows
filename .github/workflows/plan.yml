@@ -17,4 +17,5 @@ jobs:
       uses: nsai-devops/reusable-workflows/.github/actions/plan-upload@main
       with:
         git_token: ${{ secrets.git_token }}
+        default-shell: bash
 

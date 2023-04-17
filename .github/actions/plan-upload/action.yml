@@ -5,11 +5,6 @@ on:
         required: false
         type: string
         description: 'Git access token'
-    # secrets:
-    #   git_token:
-    #     required: true
-    #     type: string
-
 runs:
   using: "composite"
   steps:
@@ -17,18 +12,23 @@ runs:
     run: |
       ls
       terraform init -backend-config="path=./terraform.tfstate"
-    shell: bash  
+    # shell: bash  
 
   - name: Terrafrom validate
     run: |
       terraform validate
-    shell: bash  
-    # env:
-    #   TF_VAR_git_token: ${{ secrets.git_token }}
+    # shell: bash  
 
   - name: Terrafrom plan
     run: |
-      terraform plan
-    shell: bash  
+      terraform plan -out=plan.out
+    # shell: bash  
     env:
-      TF_VAR_git_token: ${{ inputs.git_token }}      
+      TF_VAR_git_token: ${{ inputs.git_token }}
+
+  - name: Upload Plan
+    uses: actions/upload-artifact@v2
+    # shell: bash
+    with:
+      name: plan
+      path: ./plan.out          
