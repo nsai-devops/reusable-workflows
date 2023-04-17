@@ -28,7 +28,6 @@ runs:
 
   - name: Upload Plan
     uses: actions/upload-artifact@v2
-    shell: bash
     with:
       name: plan
       path: ./plan.out          
