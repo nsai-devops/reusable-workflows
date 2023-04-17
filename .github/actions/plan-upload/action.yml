@@ -5,6 +5,10 @@ on:
         required: false
         type: string
         description: 'Git access token'
+      tf-action:
+        required: true
+        type: string
+        description: 'terraform action'  
 runs:
   using: "composite"
   steps:
@@ -19,12 +23,21 @@ runs:
       terraform validate
     shell: bash  
 
-  - name: Terrafrom plan
+  - name: Terrafrom plan apply
+    if: ${{ inputs.git_token }} == 'apply'
     run: |
       terraform plan -out=plan.out
     shell: bash  
     env:
       TF_VAR_git_token: ${{ inputs.git_token }}
+
+  - name: Terrafrom plan apply
+    if: ${{ inputs.git_token }} == 'destroy'
+    run: |
+      terraform plan -destroy -out=plan.out
+    shell: bash  
+    env:
+      TF_VAR_git_token: ${{ inputs.git_token }}    
 
   - name: Upload Plan
     uses: actions/upload-artifact@v2

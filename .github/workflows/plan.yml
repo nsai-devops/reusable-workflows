@@ -1,5 +1,8 @@
 on:
   workflow_call:
+    inputs:
+      tf-action:
+        required: true
     secrets:
       git_token:
         required: true
@@ -16,5 +19,24 @@ jobs:
     - name: terraform plan-upload
       uses: nsai-devops/reusable-workflows/.github/actions/plan-upload@main
       with:
+        tf-action: ${{ inputs.tf-action }}
         git_token: ${{ secrets.git_token }}
+
+
+  Terraform-apply-or-destroy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: plan
+        path: ./plan.out
+    - name: list
+      run: |
+        pwd
+        ls
+    # - name: terraform apply or destroy
+    #   uses: nsai-devops/reusable-workflows/.github/actions/plan-upload@main
+    #   with:
+    #     git_token: ${{ secrets.git_token }}      
 
