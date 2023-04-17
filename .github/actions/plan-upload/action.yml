@@ -12,21 +12,23 @@ on:
 
 runs:
   using: "composite"
-  shell: bash
   steps:
   - name: Terrafrom init
     run: |
       ls
       terraform init -backend-config="path=./terraform.tfstate"
+    shell: bash  
 
   - name: Terrafrom validate
     run: |
       terraform validate
+    shell: bash  
     # env:
     #   TF_VAR_git_token: ${{ secrets.git_token }}
 
   - name: Terrafrom plan
     run: |
       terraform plan
+    shell: bash  
     env:
       TF_VAR_git_token: ${{ inputs.git_token }}      
