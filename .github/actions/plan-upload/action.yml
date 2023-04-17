@@ -6,14 +6,19 @@ on:
         type: string
         description: 'Git access token'
       tf_action:
-        required: true
+        required: false
         type: string
-        description: 'terraform action'  
+        description: 'terraform action'
+      tfaction:
+        required: false
+        type: string
+        description: 'terraform action'    
 runs:
   using: "composite"
   steps:
   - name: Terrafrom init
     run: |
+      echo "tf-action: ${{ inputs.tfaction }}"
       ls
       terraform init -backend-config="path=./terraform.tfstate"
     shell: bash  

@@ -1,8 +1,8 @@
 on:
   workflow_call:
-    # inputs:
-    #   tf_action:
-    #     required: false
+    inputs:
+      tfaction:
+        required: false
     secrets:
       git_token:
         required: false
@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v3
     - name: list
       run: |
-        echo "tf-action: ${{ secrets.tf_action }}"
+        echo "tf-action: ${{ inputs.tfaction }}"
         echo "tf-action: ${{ secrets.TF_ACTION }}"
         pwd
         ls
