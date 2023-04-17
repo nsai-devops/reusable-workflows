@@ -38,7 +38,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: plan
-        path: ./plan.out
+        path: .
     - name: list
       run: |
         pwd
