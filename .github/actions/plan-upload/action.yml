@@ -5,10 +5,10 @@ on:
         required: false
         type: string
         description: 'Git access token'
-      # tf-action:
-      #   required: true
-      #   type: string
-      #   description: 'terraform action'  
+      tf-action:
+        required: true
+        type: string
+        description: 'terraform action'  
 runs:
   using: "composite"
   steps:
