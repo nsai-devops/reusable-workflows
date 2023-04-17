@@ -20,17 +20,17 @@ runs:
   - name: Terrafrom init
     run: |
       #echo "tf-action: ${{ inputs.tfaction }}"
-      ls
-      cat ./plan.out
+      ls ./plan.out
+      #cat ./plan.out
       #terraform init -backend-config="path=./terraform.tfstate"
     shell: bash  
 
-  - name: Terrafrom apply
-    shell: bash 
-    run: |
-      terraform apply ./plan.out
-    env:
-        TF_VAR_git_token: ${{ inputs.git_token }}
+  # - name: Terrafrom apply
+  #   shell: bash 
+  #   run: |
+  #     terraform apply ./plan.out
+  #   env:
+  #       TF_VAR_git_token: ${{ inputs.git_token }}
 
     # - name: GIT commit and push terraform state
     #   shell: bash
