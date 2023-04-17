@@ -1,15 +1,17 @@
 on:
   workflow_call:
-    # inputs:
-    #   git_token:
-    #     required: false
-    #     type: string
-    secrets:
+    inputs:
       git_token:
-        required: true
+        required: false
         type: string
+    # secrets:
+    #   git_token:
+    #     required: true
+    #     type: string
 
-steps:
+runs:
+  using: "composite"
+  steps:
   - name: Terrafrom init
     run: |
       ls
