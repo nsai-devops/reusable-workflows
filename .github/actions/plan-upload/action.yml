@@ -1,8 +1,12 @@
 on:
   workflow_call:
-    inputs:
+    # inputs:
+    #   git_token:
+    #     required: false
+    #     type: string
+    secrets:
       git_token:
-        required: false
+        required: true
         type: string
 
 steps:
