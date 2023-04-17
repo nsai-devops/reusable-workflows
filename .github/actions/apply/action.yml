@@ -27,7 +27,7 @@ runs:
   - name: Terrafrom apply
     shell: bash 
     run: |
-      terraform apply plan.out --auto-approve
+      terraform apply plan.out
     env:
         TF_VAR_git_token: ${{ inputs.git_token }}
 
