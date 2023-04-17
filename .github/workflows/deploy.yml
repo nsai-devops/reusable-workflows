@@ -30,6 +30,7 @@ jobs:
 
   Terraform-apply-or-destroy:
     runs-on: ubuntu-latest
+    needs: [Terraform-plan]
     steps:
     - name: Download Artifact
       uses: actions/download-artifact@v2
