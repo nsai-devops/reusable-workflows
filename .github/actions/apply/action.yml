@@ -21,14 +21,20 @@ runs:
     run: |
       #echo "tf-action: ${{ inputs.tfaction }}"
       ls
-      #cat ./plan.out
       terraform init -backend-config="path=./terraform.tfstate"
     shell: bash  
+
+  - name: Download Artifact
+    uses: actions/download-artifact@v2
+    shell: bash
+    with:
+      name: tfplan
+      path: tfplan
 
   - name: Terrafrom apply
     shell: bash 
     run: |
-      terraform apply ./plan.out
+      terraform apply -auto-approve tfplan
     env:
         TF_VAR_git_token: ${{ inputs.git_token }}
 
