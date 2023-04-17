@@ -1,9 +1,9 @@
 on:
   workflow_call:
-    inputs:
-      tfaction:
-        required: false
-        default: 'apply'
+    # inputs:
+    #   tfaction:
+    #     required: false
+    #     default: 'apply'
     secrets:
       git_token:
         required: false

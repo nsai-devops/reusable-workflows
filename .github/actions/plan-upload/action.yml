@@ -9,11 +9,11 @@ on:
         required: false
         type: string
         description: 'terraform action'
-      tfaction:
-        required: false
-        type: string
-        description: 'terraform action' 
-        default: 'apply'
+      # tfaction:
+      #   required: false
+      #   type: string
+      #   description: 'terraform action' 
+      #   default: 'apply'
 runs:
   using: "composite"
   steps:
@@ -29,13 +29,13 @@ runs:
       terraform validate
     shell: bash  
 
-  - name: Terrafrom plan apply
-    if: ${{ inputs.tf_action }} == 'apply'
-    run: |
-      terraform plan -out=plan.out
-    shell: bash  
-    env:
-      TF_VAR_git_token: ${{ inputs.git_token }}
+  # - name: Terrafrom plan apply
+  #   if: ${{ inputs.tf_action }} == 'apply'
+  #   run: |
+  #     terraform plan -out=plan.out
+  #   shell: bash  
+  #   env:
+  #     TF_VAR_git_token: ${{ inputs.git_token }}
 
   - name: Terrafrom plan apply
     if: ${{ inputs.tf_action }} == 'destroy'
