@@ -20,11 +20,11 @@ jobs:
         echo "tf-action: ${{ secrets.TF_ACTION }}"
         pwd
         ls
-    # - name: terraform plan-upload
-    #   uses: nsai-devops/reusable-workflows/.github/actions/plan-upload@main
-    #   with:
-    #     tf-action: ${{ inputs.tf-action }}
-    #     git_token: ${{ secrets.git_token }}
+    - name: terraform plan-upload
+      uses: nsai-devops/reusable-workflows/.github/actions/plan-upload@main
+      with:
+        tf_action: ${{ secrets.tf_action }}
+        git_token: ${{ secrets.git_token }}
 
 
   # Terraform-apply-or-destroy:
