@@ -12,23 +12,23 @@ runs:
     run: |
       ls
       terraform init -backend-config="path=./terraform.tfstate"
-    # shell: bash  
+    shell: bash  
 
   - name: Terrafrom validate
     run: |
       terraform validate
-    # shell: bash  
+    shell: bash  
 
   - name: Terrafrom plan
     run: |
       terraform plan -out=plan.out
-    # shell: bash  
+    shell: bash  
     env:
       TF_VAR_git_token: ${{ inputs.git_token }}
 
   - name: Upload Plan
     uses: actions/upload-artifact@v2
-    # shell: bash
+    shell: bash
     with:
       name: plan
       path: ./plan.out          
