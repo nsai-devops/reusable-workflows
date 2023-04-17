@@ -2,23 +2,24 @@ on:
   workflow_call:
     inputs:
       git_token:
-        required: true
+        required: false
+        type: string
 
 runs:
 steps:
-    - name: Terrafrom init
-      run: |
-        ls
-        terraform init -backend-config="path=./terraform.tfstate"
+  - name: Terrafrom init
+    run: |
+      ls
+      terraform init -backend-config="path=./terraform.tfstate"
 
-    - name: Terrafrom validate
-      run: |
-        terraform validate
-      # env:
-      #   TF_VAR_git_token: ${{ secrets.git_token }}
+  - name: Terrafrom validate
+    run: |
+      terraform validate
+    # env:
+    #   TF_VAR_git_token: ${{ secrets.git_token }}
 
-    - name: Terrafrom plan
-      run: |
-        terraform plan
-      env:
-        TF_VAR_git_token: ${{ inputs.git_token }}        
+  - name: Terrafrom plan
+    run: |
+      terraform plan
+    env:
+      TF_VAR_git_token: ${{ inputs.git_token }}      
