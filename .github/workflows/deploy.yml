@@ -17,7 +17,7 @@ jobs:
     - name: list
       run: |
         echo "tf-action: ${{ secrets.tf_action }}"
-        echo "tf-action: ${{ inputs.tf_action }}"
+        echo "tf-action: ${{ secrets.TF_ACTION }}"
         pwd
         ls
     # - name: terraform plan-upload
