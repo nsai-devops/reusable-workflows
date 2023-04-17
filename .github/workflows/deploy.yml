@@ -5,9 +5,9 @@ on:
     #     required: true
     secrets:
       git_token:
-        required: true
+        required: false
       tf-action:
-        required: true  
+        required: false 
 jobs:
   Terraform-plan:
     runs-on: ubuntu-latest
