@@ -11,7 +11,7 @@ on:
     #     type: string
 
 runs:
-  # using: "composite"
+  using: "composite"
   shell: bash
   steps:
   - name: Terrafrom init
