@@ -24,22 +24,22 @@ runs:
       #terraform init -backend-config="path=./terraform.tfstate"
     shell: bash  
 
-  - name: Terrafrom apply
-    shell: bash 
-    run: |
-      terraform apply plan.out --auto-approve
-    env:
-        TF_VAR_git_token: ${{ inputs.git_token }}
+  # - name: Terrafrom apply
+  #   shell: bash 
+  #   run: |
+  #     terraform apply plan.out --auto-approve
+  #   env:
+  #       TF_VAR_git_token: ${{ inputs.git_token }}
 
-    - name: GIT commit and push terraform state
-      shell: bash
-      run: |
-        git config --global user.name \"${{ env.CI_COMMIT_AUTHOR }}\"
-        git config --global user.email \"nsai.devops@gmail.com\"
-        git remote set-url origin https://nsai-devops:${{ inputs.git_token }}@github.com/nsai-devops/github_creation_tf_module.git
-        git add terraform.tfstate
-        git commit -m \"${{ env.CI_COMMIT_MESSAGE }}\"
-        git push
-      env:
-        CI_COMMIT_MESSAGE: Continuous Integration Terraform state
-        CI_COMMIT_AUTHOR: nsai-devops          
+  #   - name: GIT commit and push terraform state
+  #     shell: bash
+  #     run: |
+  #       git config --global user.name \"${{ env.CI_COMMIT_AUTHOR }}\"
+  #       git config --global user.email \"nsai.devops@gmail.com\"
+  #       git remote set-url origin https://nsai-devops:${{ inputs.git_token }}@github.com/nsai-devops/github_creation_tf_module.git
+  #       git add terraform.tfstate
+  #       git commit -m \"${{ env.CI_COMMIT_MESSAGE }}\"
+  #       git push
+  #     env:
+  #       CI_COMMIT_MESSAGE: Continuous Integration Terraform state
+  #       CI_COMMIT_AUTHOR: nsai-devops          
