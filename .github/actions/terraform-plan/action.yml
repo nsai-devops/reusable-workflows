@@ -1,0 +1,40 @@
+name: terraform plan
+inputs:
+  git_token:
+    required: false
+    type: string
+    description: 'Git access token'
+
+runs:
+  using: "composite"
+  steps:
+  - name: Terrafrom init
+    run: |
+      ls
+      terraform init -backend-config="path=./terraform.tfstate"
+    shell: bash  
+
+  - name: Terrafrom validate
+    run: |
+      terraform validate
+    shell: bash  
+
+  - name: Terrafrom plan
+    run: |
+      terraform plan -out=tfplan
+    shell: bash  
+    env:
+      TF_VAR_git_token: ${{ inputs.git_token }}
+
+  # - name: Terrafrom plan apply
+  #   run: |
+  #     terraform plan -destroy -out=tfplan
+  #   shell: bash  
+  #   env:
+  #     TF_VAR_git_token: ${{ inputs.git_token }}  
+
+  - name: Upload Plan
+    uses: actions/upload-artifact@v2
+    with:
+      name: tfplan
+      path: tfplan          
