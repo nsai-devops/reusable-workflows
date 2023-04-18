@@ -1,0 +1,29 @@
+name: inputs test
+on:
+  workflow_call:
+    inputs:
+      input_1:
+        description: 'Input 1'
+        required: true
+        default: 'default value'
+      input_2:
+        description: 'Input 2'
+        required: false
+ 
+jobs:
+  inputs-test:
+    runs-on: ubuntu-latest
+    steps:
+    # - name: Checkout
+    #   uses: actions/checkout@v3
+    - name: list
+      run: |
+        echo 'input-3: ${{ inputs.input_1 }}'
+        echo 'input-4: ${{ inputs.input_2 }}'
+        pwd
+        ls
+    # - name: terraform plan-upload
+    #   uses: nsai-devops/reusable-workflows/.github/actions/plan-upload@main
+    #   with:
+    #     tf_action: ${{ secrets.tf_action }}
+    #     git_token: ${{ secrets.git_token }}
