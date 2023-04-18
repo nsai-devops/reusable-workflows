@@ -1,14 +1,14 @@
 name: inputs test
 on:
   workflow_call:
-    inputs:
-      input_1:
-        description: Input 1
-        required: true
-        default: default value
-      input_2:
-        description: Input 2
-        required: false
+inputs:
+  input_1:
+    description: Input 1
+    required: true
+    default: default value
+  input_2:
+    description: Input 2
+    required: false
 jobs:
   inputs-test:
     runs-on: ubuntu-latest
