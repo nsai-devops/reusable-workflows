@@ -19,19 +19,19 @@ runs:
       terraform validate
     shell: bash  
 
-  - name: Terrafrom plan
-    run: |
-      terraform plan -out=tfplan
-    shell: bash  
-    env:
-      TF_VAR_git_token: ${{ inputs.git_token }}
-
-  # - name: Terrafrom plan apply
+  # - name: Terrafrom plan
   #   run: |
-  #     terraform plan -destroy -out=tfplan
+  #     terraform plan -out=tfplan
   #   shell: bash  
   #   env:
-  #     TF_VAR_git_token: ${{ inputs.git_token }}  
+  #     TF_VAR_git_token: ${{ inputs.git_token }}
+
+  - name: Terrafrom plan apply
+    run: |
+      terraform plan -destroy -out=tfplan
+    shell: bash  
+    env:
+      TF_VAR_git_token: ${{ inputs.git_token }}  
 
   - name: Upload Plan
     uses: actions/upload-artifact@v2
